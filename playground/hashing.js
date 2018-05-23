@@ -1,5 +1,6 @@
 const {SHA256} = require('crypto-js');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcryptjs');
 
 /* Below example using Crypto JS*/
 
@@ -34,7 +35,7 @@ else {
 */
 
 /* Below example using JWT */
-
+/*
 var data = {
   id: 10
 }
@@ -44,3 +45,22 @@ console.log(token);
 
 var decoded = jwt.verify(token, 'abc123');
 console.log('Decoded', decoded);
+*/
+
+/* B-Crypt password hashing demo */
+
+var password = '123abc!';
+
+/*
+bcrypt.genSalt(10, (err, salt) => {
+  bcrypt.hash(password, salt, (err, hash) => {
+    console.log(hash);
+  })
+});
+*/
+
+var hashPassword = '$2a$10$f45S2EBLFUpU1NTmje6xGO3voc7aK9weL9jrt3l4y0kZnKXJM6ugq';
+
+bcrypt.compare(password, hashPassword, (err, res) => {
+    console.log(res);
+})
